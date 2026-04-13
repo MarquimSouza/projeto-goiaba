@@ -1,0 +1,71 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+    <script src="form.js" defer></script>
+    <title>Movimentação</title>
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <h1><a href="index.html">Goiaba Project</a></h1>
+
+        <nav>
+          <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="movimentos.html">Produtos</a></li>
+            <li><a href="historico.html">Histórico</a></li>
+            <li><a href="sobre.html">Sobre Nós</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <main class="content">
+        <!-- MENU DE ABAS -->
+        <ul class="select-form">
+          <li>
+            <a href="#" class="tab active" data-form="cadastro"
+              >Cadastrar Produto</a
+            >
+          </li>
+          <li>
+            <a href="#" class="tab" data-form="movimentacao"
+              >Entradas / Saídas</a
+            >
+          </li>
+        </ul>
+
+        <!-- FORMULÁRIOS -->
+        <div class="forms-container">
+          <!-- FORM CADASTRO -->
+          <form class="form-content active" id="cadastro">
+            <h2>Cadastrar Produto</h2>
+
+            <input id="nome-produto" type="text" placeholder="Nome do produto" />
+            <input id="quantidade-produto" type="number" placeholder="Quantidade" />
+            <input id="categoria-produto" type="text" placeholder="Categoria" />
+
+            <button type="submit">Cadastrar</button>
+          </form>
+
+          <!-- FORM MOVIMENTAÇÃO -->
+          <form class="form-content" id="movimentacao">
+            <h2>Movimentação</h2>
+
+            <input id="produto-mov" type="text" placeholder="Produto" />
+            <input id="quantidade-mov" type="number" placeholder="Quantidade" />
+
+            <select id="tipo-mov">
+              <option value="entrada">Entrada</option>
+              <option value="saida">Saída</option>
+            </select>
+
+            <button type="submit">Confirmar</button>
+          </form>
+        </div>
+      </main>
+    </div>
+    <div id="popup" class="popup"></div>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+    <script src="form.js" defer></script>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="container">
+
+        <aside class="sidebar">
+          <h1><a href="index.html">Goiaba Project</a></h1>
+
+          <nav>
+            <ul>
+              <li><a href="index.html">Dashboard</a></li>
+              <li><a href="movimentos.html">Produtos</a></li>
+              <li><a href="historico.html">Histórico</a></li>
+              <li><a href="sobre.html">Sobre Nós</a></li>
+            </ul>
+          </nav>
+        </aside>
+      </aside>
+      <main class="content">
+        <header class="header">
+          <h2>Dashboard</h2>
+          <p>Resumo geral do sistema</p>
+        </header>
+        <section class="cards">
+          <div class="card">
+            <h3>Total de Produtos</h3>
+            <p id="total-produtos"></p>
+          </div>
+          <div class="card">
+            <h3>Baixo Estoque</h3>
+            <h4 id="titulo-baixo"></h4>
+            <p id="baixo-estoque"></p>
+          </div>
+          <div class="card">
+            <h3>Entradas Hoje</h3>
+            <h4 id="titulo-entrada"></h4>
+            <p id="entradas-hoje"></p>
+          </div>
+          <div class="card">
+            <h3>Saídas Hoje</h3>
+            <h4 id="titulo-saida"></h4>
+            <p id="saidas-hoje"></p>
+          </div>
+        </section>
+        <section class="table-section">
+          <h3>Últimas movimentações</h3>
+          <table>
+            <thead class="table-title">
+              <tr>
+                <td>Produto</td>
+                <td>Tipo</td>
+                <td>Quantidade</td>
+                <td>Data</td>
+              </tr>
+            </thead>
+            <tbody id="table-elements">
+              
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
