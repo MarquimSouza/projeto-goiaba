@@ -83,7 +83,7 @@ function cadastrarProduto() {
 /* FUNÇÃO ENTRADA E SAIDA PRODUTOS */
 
 function entradaSaida() {
-  let entradaSaida = {
+  let produtoEditado = {
     produto:
       produtoMov.value.trim().charAt(0).toUpperCase() +
       produtoMov.value.trim().slice(1).toLowerCase(),
@@ -97,7 +97,7 @@ function entradaSaida() {
   const produtoRepetido = produtos.some(
     (item) =>
       item.nome.toLowerCase().trim() ==
-      entradaSaida.produto.toLowerCase().trim(),
+      produtoEditado.produto.toLowerCase().trim(),
   );
 
   if (!produtoRepetido) {
@@ -106,11 +106,11 @@ function entradaSaida() {
   } else {
     let produtoEncontrado = produtos.find(
       (item) =>
-        item.nome.toLowerCase() == entradaSaida.produto.toLowerCase().trim(),
+        item.nome.toLowerCase() == produtoEditado.produto.toLowerCase().trim(),
     );
-    if (entradaSaida.tipo.toLowerCase() == "entrada") {
-      produtoEncontrado.quantidadeProdutos += entradaSaida.quantidadeMov;
-      movimentacoes.push(entradaSaida);
+    if (produtoEditado.tipo.toLowerCase() == "entrada") {
+      produtoEncontrado.quantidadeProdutos += produtoEditado.quantidadeMov;
+      movimentacoes.push(produtoEditado);
       mostrarPopup(
         "success",
         `O produto ${produtoEncontrado.nome} foi atualizado com sucesso e tem o estoque de ${produtoEncontrado.quantidadeProdutos}.`,
@@ -118,7 +118,7 @@ function entradaSaida() {
       rstInputsES();
       totalEstoque();
     } else if (
-      produtoEncontrado.quantidadeProdutos - entradaSaida.quantidadeMov <
+      produtoEncontrado.quantidadeProdutos - produtoEditado.quantidadeMov <
       0
     ) {
       mostrarPopup(
@@ -127,8 +127,8 @@ function entradaSaida() {
       );
       rstInputsES();
     } else {
-      produtoEncontrado.quantidadeProdutos -= entradaSaida.quantidadeMov;
-      movimentacoes.push(entradaSaida);
+      produtoEncontrado.quantidadeProdutos -= produtoEditado.quantidadeMov;
+      movimentacoes.push(produtoEditado);
       mostrarPopup(
         "success",
         `O produto ${produtoEncontrado.nome} foi atualizado com sucesso e tem o estoque de ${produtoEncontrado.quantidadeProdutos}.`,
