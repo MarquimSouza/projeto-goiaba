@@ -4,24 +4,14 @@ let indiceEntrada = 0; //Indice para slideshow Entrada
 let indiceSaida = 0; //Indice para slideshow Saida
 htmlUM = "";
 
-/* PRODUTOS */
-let produtos = [
-  {
-    nome: "agua",
-    quantidadeProdutos: 10,
-    categoria: "bebida",
-  },
-  {
-    nome: "biscoito",
-    quantidadeProdutos: 20,
-    categoria: "comida",
-  },
-  {
-    nome: "bala",
-    quantidadeProdutos: 5,
-    categoria: "comida",
-  },
-];
+/* CARREGAR PRODUTOS */
+
+function carregarProdutos() {
+  return localStorage.getItem("userData")
+    ? JSON.parse(localStorage.getItem("userData"))
+    : [];
+}
+let produtos = carregarProdutos();
 
 /* MOVIMENTAÇÃO */
 
@@ -99,7 +89,7 @@ let entradasHoje = document.getElementById("entradas-hoje");
 
 function getEntradasRecentes() {
   return movimentacoes.filter(({ tipo, data }) => {
-    let agora = new Date()
+    let agora = new Date();
     let diferenca = agora - data; // em milissegundos
 
     let umDia = 24 * 60 * 60 * 1000;
@@ -129,7 +119,7 @@ let saidasHoje = document.getElementById("saidas-hoje");
 
 function getSaidasRecentes() {
   return movimentacoes.filter(({ tipo, data }) => {
-    let agora = new Date()
+    let agora = new Date();
     let diferenca = agora - data; // em milissegundos
 
     let umDia = 24 * 60 * 60 * 1000;
@@ -139,7 +129,7 @@ function getSaidasRecentes() {
 }
 
 function produtosSaida() {
-  let saidas = getSaidasRecentes()
+  let saidas = getSaidasRecentes();
   let produtoSaida = saidas[indiceSaida];
   saidasHoje.innerHTML = `<p>${produtoSaida.produto}<br>${produtoSaida.quantidadeMov}</p>`;
   indiceSaida++;
