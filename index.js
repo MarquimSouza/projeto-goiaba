@@ -13,45 +13,22 @@ function carregarProdutos() {
 }
 let produtos = carregarProdutos();
 
-/* MOVIMENTAÇÃO */
+/* CARREGAR MOVIMENTAÇÃO */
 
-let movimentacoes = [
-  {
-    produto: "coca-cola",
-    tipo: "entrada",
-    quantidadeMov: 20,
-    data: new Date(),
-  },
-  {
-    produto: "arroz",
-    tipo: "entrada",
-    quantidadeMov: 30,
-    data: new Date(),
-  },
-  {
-    produto: "vinagre",
-    tipo: "saida",
-    quantidadeMov: 40,
-    data: new Date(),
-  },
-  {
-    produto: "feijao",
-    tipo: "saida",
-    quantidadeMov: 50,
-    data: new Date(),
-  },
-  {
-    produto: "azeitona",
-    tipo: "entrada",
-    quantidadeMov: 60,
-    data: new Date(),
-  },
-];
+function carregarMovimentacao() {
+  return localStorage.getItem("moveData")
+    ? JSON.parse(localStorage.getItem("moveData"))
+    : [];
+}
+let movimentacoes = carregarMovimentacao();
 
 /* TOTAL PRODUTOS */
 
 let totalProdutos = document.getElementById("total-produtos");
+
 function totalEstoque() {
+  if (!totalProdutos) return;
+  
   estoqueTotal = produtos.reduce((soma, valorAtual) => {
     return soma + valorAtual.quantidadeProdutos;
   }, 0);
@@ -70,6 +47,12 @@ function getProdutosFaltantes() {
 
 function produtosBE() {
   let faltantes = getProdutosFaltantes();
+
+  if (faltantes.length === 0) {
+    baixoEstoque.innerHTML = `<p>---<br>---</p>`;
+    return;
+  }
+
   let produtoBE = faltantes[indiceBE];
   baixoEstoque.innerHTML = `<p>${produtoBE.nome}<br>${produtoBE.quantidadeProdutos}</p>`;
   indiceBE++;
@@ -100,6 +83,12 @@ function getEntradasRecentes() {
 
 function produtosEntrada() {
   let entradas = getEntradasRecentes();
+
+  if (entradas.length === 0) {
+    entradasHoje.innerHTML = `<p>---<br>---</p>`;
+    return;
+  }
+
   let produtoEntrada = entradas[indiceEntrada];
   entradasHoje.innerHTML = `<p>${produtoEntrada.produto}<br>${produtoEntrada.quantidadeMov}</p>`;
   indiceEntrada++;
@@ -130,6 +119,12 @@ function getSaidasRecentes() {
 
 function produtosSaida() {
   let saidas = getSaidasRecentes();
+
+  if (saidas.length === 0) {
+    saidasHoje.innerHTML = `<p>---<br>---</p>`;
+    return;
+  }
+
   let produtoSaida = saidas[indiceSaida];
   saidasHoje.innerHTML = `<p>${produtoSaida.produto}<br>${produtoSaida.quantidadeMov}</p>`;
   indiceSaida++;
@@ -147,8 +142,8 @@ setInterval(() => {
 
 let tableElements = document.getElementById("table-elements");
 let movRecentes = movimentacoes.filter(({ data }) => {
+  let agora = new Date();
   let diferenca = agora - data;
-
   let umDia = 24 * 60 * 60 * 1000;
 
   return diferenca <= umDia;
