@@ -159,3 +159,15 @@ movRecentes.forEach(({ produto, tipo, quantidadeMov, data }) => {
 });
 
 tableElements.innerHTML = htmlUM;
+
+/* ATUALIZAR PAÁGINA*/
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    totalEstoque()
+    produtoBE()
+    produtosSaida()
+    produtosEntrada()
+    tableElements.innerHTML = htmlUM
+  }
+})
