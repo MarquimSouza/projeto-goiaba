@@ -52,19 +52,6 @@ function rstInputsES() {
   tipoMov.value = "";
 }
 
-/* SALVAR PRODUTOS */
-
-function salvarProdutos() {
-  localStorage.setItem("userData", JSON.stringify(produtos));
-}
-
-
-/* SALVAR MOVIMENTAÇÃO */
-
-function salvarMovimentacao() {
-  localStorage.setItem("moveData", JSON.stringify(movimentacoes));
-}
-
 /* FUNÇÃO CADASTRAR PRODUTO */
 
 function cadastrarProduto() {
@@ -87,8 +74,6 @@ function cadastrarProduto() {
     mostrarPopup("success", "Produto cadastrado com sucesso!");
     rstInputsCadastro();
     totalEstoque();
-    salvarProdutos()
-    salvarMovimentacao()
   } else {
     rstInputsCadastro();
     return mostrarPopup("warning", "Produto ja consta no estoque!");
@@ -150,10 +135,11 @@ function entradaSaida() {
       );
       rstInputsES();
       totalEstoque();
-      salvarProdutos()
-      salvarMovimentacao()
+      rstInputsES();
     }
   }
+  console.log(produtos);
+  console.log(movimentacoes);
 }
 
 /* SUBMIT FORMULÁRIO */
