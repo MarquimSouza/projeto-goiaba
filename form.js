@@ -132,8 +132,6 @@ function entradaSaida() {
       );
       rstInputsES();
       totalEstoque();
-      salvarProdutos()
-      salvarMovimentacao()
     } else if (
       produtoEncontrado.quantidadeProdutos - produtoEditado.quantidadeMov <
       0
